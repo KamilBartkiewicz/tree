@@ -1,0 +1,17 @@
+version: "3.3"
+
+services:
+  php:
+    image: webdevops/php-apache-dev:8.1-alpine
+    container_name: php
+    restart: always
+    user: application
+    environment:
+      - WEB_ALIAS_DOMAIN=localhost
+      - WEB_DOCUMENT_ROOT=/app
+      - PHP_EXTENSION_DEBUG=1
+    volumes:
+      - ./:/app
+    ports:
+      - "80:80"
+      - "443:443"
