@@ -20,11 +20,11 @@ class Tree
     public static function treeLRV(array &$roots, array $list): void
     {
         foreach ($roots as &$root) {
-            if (!empty($root['children'])) {
-                self::treeLRV($root['children'], $list);
+            if (!empty($root[self::CHILDREN])) {
+                self::treeLRV($root[self::CHILDREN], $list);
             }
             if (array_key_exists($root[self::ID], $list)) {
-                $root['name'] = $list[$root[self::ID]];
+                $root[self::NAME] = $list[$root[self::ID]];
             }
         }
     }
@@ -37,7 +37,7 @@ class Tree
     {
         $arr = [];
         foreach ($list as $item) {
-            $arr[$item[self::CATEGORY]] = self::getNameAsString($item['translations']);
+            $arr[$item[self::CATEGORY]] = self::getNameAsString($item[self::TRANSLATION]);
 
         }
         return $arr;
